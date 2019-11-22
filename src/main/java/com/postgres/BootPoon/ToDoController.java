@@ -5,18 +5,20 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class ToDoController {
 
     @Autowired
     private ToDoRepository questionRepository;
 
-    @GetMapping("/questions")
+    @GetMapping("/todos")
     public List<ToDo> getQuestions(){
     	return questionRepository.findAll();
     }
@@ -27,7 +29,7 @@ public class ToDoController {
 //    }
 
 
-    @PostMapping("/questions")
+    @PostMapping("/todos")
     public ToDo createQuestion(@Valid @RequestBody ToDo question) {
         return questionRepository.save(question);
     }
